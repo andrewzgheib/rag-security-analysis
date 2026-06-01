@@ -2,7 +2,7 @@
 
 This project builds a RAG system over the personal websites of the repository's contributors (and optionally a local Obsidian vault), then exploits it using the [OWASP Top 10 for LLM Applications 2025](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf).
 
-Submitted in partial fulfillment for the AI & Cybersecurity course at [Saint Joseph University of Beirut](https://www.usj.edu.lb?lang=2).
+Submitted in partial fulfillment for the **AI & Cybersecurity** course at [Saint Joseph University of Beirut](https://www.usj.edu.lb?lang=2).
 
 ## Usage
 
