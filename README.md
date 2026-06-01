@@ -45,6 +45,13 @@ python main.py --filter andrew   # Chat restricted to Andrew's content only
 python main.py --filter michaela # Chat restricted to Michaela's content only
 ```
 
+### Exploits
+
+```bash
+python -m exploits.llm[0-10]_<exploit_name>                 # Run a single exploit module directly
+```
+
 ## Notes
 
 - The project assumes the use of Gemini for both LLM and embeddings, but the code is modular. You can swap out the LLM or embedding providers by modifying `config.py` and updating the relevant wrapper functions in `embeddings.py` and `rag.py`.
+- [LLM10](./exploits/llm10_unbounded_consumption.py) runs in `DRY_RUN=True` mode by default to avoid burning API quota. Set `DRY_RUN=False` to execute live.
