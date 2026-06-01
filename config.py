@@ -7,7 +7,7 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Models
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = "gemini-2.5-pro"
 GEMINI_EMBEDDING_MODEL = "gemini-embedding-2"
 
 # Target Websites
@@ -15,6 +15,9 @@ TARGET_SITES = [
     {"url": "https://andrewzgheib.github.io", "source_tag": "andrew"},
     {"url": "https://michaelaelrif.github.io", "source_tag": "michaela"},
 ]
+
+# Obsidian
+OBSIDIAN_SOURCE_TAG = "obsidian"
 
 # Chunking
 CHUNK_SIZE = 400 # words per chunk

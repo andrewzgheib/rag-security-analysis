@@ -1,6 +1,6 @@
 # RAG Security Analysis
 
-This project builds a RAG system over the personal websites of the repository's contributors, then exploits it using the [OWASP Top 10 for LLM Applications 2025](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf).
+This project builds a RAG system over the personal websites of the repository's contributors (and optionally a local Obsidian vault), then exploits it using the [OWASP Top 10 for LLM Applications 2025](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf).
 
 Submitted in partial fulfillment for the AI & Cybersecurity course at [Saint Joseph University of Beirut](https://www.usj.edu.lb?lang=2).
 
@@ -28,7 +28,9 @@ Get your API key from:
 ### Index
 
 ```bash
-python main.py --reindex [andrew|michaela]
+python main.py --reindex [andrew|michaela]         # re-index web sources (Andrew's and/or Michaela's website)
+python main.py --obsidian /path/to/vault           # index (or re-index) an Obsidian vault
+python main.py --reindex --obsidian /path/to/vault # re-index web sources + vault together
 ```
 
 This will:
@@ -37,18 +39,25 @@ This will:
 3. Embed with Gemini embeddings
 4. Store in ChromaDB at `./chroma_db/`
 
+The `--obsidian` flag will:
+1. Recursively walks the vault for `.md` files
+2. Strips YAML frontmatter, wikilinks `[[Note]]`, inline tags `#tag`, callouts, and embeds
+3. Chunks the plain text using the same `CHUNK_SIZE` / `CHUNK_OVERLAP` settings as web sources
+4. Stores chunks in ChromaDB under source tag `obsidian`
+
 ### RAG
 
 ```bash
-python main.py                   # Chat using both sites (auto-builds if empty)
-python main.py --filter andrew   # Chat restricted to Andrew's content only
-python main.py --filter michaela # Chat restricted to Michaela's content only
+python main.py                   # chat using all indexed sources
+python main.py --filter andrew   # restrict to Andrew's website
+python main.py --filter michaela # restrict to Michaela's website
+python main.py --filter obsidian # restrict to Obsidian vault
 ```
 
 ### Exploits
 
 ```bash
-python -m exploits.llm[0-10]_<exploit_name>                 # Run a single exploit module directly
+python -m exploits.llm[0-10]_<exploit_name> # run an exploit module
 ```
 
 ## Notes
